@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="zh"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><meta name="description" content="Zoukh&#39;s blog"><meta name="keyword" content="blog,front end,css,html,javascript"><link rel="shortcut icon" href="/css/images/logo.png"><title>Java系统学习005 | Zoukh&#39;s Blog</title><link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script><script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></head><div class="wechat-share"><img src="/css/images/logo.png" alt="logo"></div><body><div id="container"><header class="header fixed-header"><div class="header-container"><a class="home-link" href="/"><div class="logo"></div><span><svg height="60" width="250" id="header-svg"><symbol id="s-text"><text text-anchor="left" x="0%" y="50%" dy=".35em">Zoukh's Blog</text></symbol><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use></svg><style>#header-svg{position:absolute;top:0}@media screen and (max-width:768px){#header-svg{top:-7px}}.text{fill:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:40 185;stroke-dashoffset:0;-webkit-animation:stroke 8s infinite linear;animation:stroke 8s infinite linear;font-size:40px;line-height:1;height:40px}.text:nth-child(5n+1){stroke:#f2385a;-webkit-animation-delay:-1.6s;animation-delay:-1.6s}.text:nth-child(5n+2){stroke:#f5a503;-webkit-animation-delay:-3.2s;animation-delay:-3.2s}.text:nth-child(5n+3){stroke:#42b983;-webkit-animation-delay:-4.8s;animation-delay:-4.8s}.text:nth-child(5n+4){stroke:#56d9cd;-webkit-animation-delay:-6.4s;animation-delay:-6.4s}.text:nth-child(5n+5){stroke:#3aa1bf;-webkit-animation-delay:-8s;animation-delay:-8s}@-webkit-keyframes stroke{100%{stroke-dashoffset:-225}}@keyframes stroke{100%{stroke-dashoffset:-225}}</style></span></a><ul class="right-list"><li class="list-item"><a href="/" class="item-link">Home</a></li><li class="list-item"><a href="/tags/" class="item-link">Tags</a></li><li class="list-item"><a href="/archives/" class="item-link">Archives</a></li><li class="list-item"><a href="/project/" class="item-link">Project</a></li><li class="list-item"><a href="/about/" class="item-link">About</a></li></ul><div class="menu"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div><div class="menu-mask"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Home</a></li><li class="menu-item"><a href="/tags/" class="menu-link">Tags</a></li><li class="menu-item"><a href="/archives/" class="menu-link">Archives</a></li><li class="menu-item"><a href="/project/" class="menu-link">Project</a></li><li class="menu-item"><a href="/about/" class="menu-link">About</a></li></ul></div></div></header><div id="article-banner"><h2>Java系统学习005</h2><p class="post-date">2018-09-10</p></div><main class="app-body flex-box"><article class="post-article"><section class="markdown-content"><h1 id="Java系统学习005"><a href="#Java系统学习005" class="headerlink" title="Java系统学习005"></a>Java系统学习005</h1><h2 id="四、对象与类（3）"><a href="#四、对象与类（3）" class="headerlink" title="四、对象与类（3）"></a>四、对象与类（3）</h2><h3 id="对象构造"><a href="#对象构造" class="headerlink" title="对象构造"></a>对象构造</h3><ul><li>重载 多个方法有相同的方法名，不同的参数</li><li>默认域初始化</li></ul><blockquote><p>只有缺少程序设计经验的人才会使用构造器的默认值，，，</p></blockquote><ul><li>无参数的构造器</li><li>显示域初始化</li><li>参数名 编写很小的构造器时候，常常使用单个字符命名，这样代码的可读性较差，可在每个参数前面加a：aName</li><li>调用另一个构造器 this.</li><li>初始化块</li></ul><h3 id="包"><a href="#包" class="headerlink" title="包"></a>包</h3><p>从编译器的角度看，嵌套的包之间没有任何关系。</p><ul><li>类的导入</li><li>静态导入 import static java.lang.System.*;</li><li>将类放入包中 package</li><li>包作用域 —java.awt.Window</li></ul><h3 id="类路径"><a href="#类路径" class="headerlink" title="类路径"></a>类路径</h3><h3 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h3><p>将文档和代码存在不同的文件，可能随时间推移出现代码和注释不一致的问题，将其放在同一个文件中，修改代码后再运行javadoc就可容易的保证二者的一致性</p><ul><li>注释的插入<br>javadoc<br>/**</li></ul></section><div class="tags"><span>Tags:</span> <a href="/tags#java"><span class="tag-code">java</span></a></div><div class="nav-container"><a class="nav-left" href="/2018/09/10/Java学习004/"><span class="nav-arrow">← </span>Java系统学习004 </a><a class="nav-right" href="/2018/09/10/Java学习007/">Java系统学习007 <span class="nav-arrow">→</span></a></div><div id="disqus_thread"></div></article><aside class="catalog-container"><div class="toc-main"><strong class="toc-title">Catalog</strong><ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#Java系统学习005"><span class="toc-nav-text">Java系统学习005</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#四、对象与类（3）"><span class="toc-nav-text">四、对象与类（3）</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#对象构造"><span class="toc-nav-text">对象构造</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#包"><span class="toc-nav-text">包</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#类路径"><span class="toc-nav-text">类路径</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#文档注释"><span class="toc-nav-text">文档注释</span></a></li></ol></li></ol></li></ol></div></aside></main><script>(function () {
+    var url = 'https://whyisee.github.io/2018/09/10/Java学习005/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function () {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function () {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="' + src + '" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function () {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Java系统学习005",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();</script><script>var disqus_shortname="zoukh",disqus_url="https://whyisee.github.io/2018/09/10/Java学习005/";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//go.disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><div class="scroll-top"><span class="arrow-icon"></span></div></div><footer class="app-footer"><p class="copyright">&copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a><br>Theme by <a href="https://github.com/yanm1ng">yanm1ng</a></p></footer><script>function async(e,n){var t=document,a="script",r=t.createElement(a),c=t.getElementsByTagName(a)[0];r.src=e,n&&r.addEventListener("load",function(e){n(null,e)},!1),c.parentNode.insertBefore(r,c)}</script><script>async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js",function(){FastClick.attach(document.body)})</script><script>var hasLine="true";async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js",function(){$("figure pre").each(function(t,e){var a=$(this).parents("figure");"false"===hasLine&&a.find(".gutter").hide();var s=a.attr("class").split(" ")[1]||"code",i=$(this).html(),h=document.createElement("code");h.className=s,h.innerHTML=i,$(this).attr("class","").empty().html(h),a.attr("data-lang",s.toUpperCase()),hljs.highlightBlock(e)})})</script><script>var _baId="38d9d6cd6dd01ce7d270b91920f6a51b",_hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?"+_baId;var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><script src="/js/script.js"></script></body></html>
