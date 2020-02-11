@@ -1,0 +1,150 @@
+<!DOCTYPE html><html lang="zh"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><meta name="description" content="Zoukh&#39;s blog"><meta name="keyword" content="blog,front end,css,html,javascript"><link rel="shortcut icon" href="/css/images/logo.png"><title>Java系统学习017-排序算法(一) | Zoukh&#39;s Blog</title><link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script><script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></head><div class="wechat-share"><img src="/css/images/logo.png" alt="logo"></div><body><div id="container"><header class="header fixed-header"><div class="header-container"><a class="home-link" href="/"><div class="logo"></div><span><svg height="60" width="250" id="header-svg"><symbol id="s-text"><text text-anchor="left" x="0%" y="50%" dy=".35em">Zoukh's Blog</text></symbol><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use></svg><style>#header-svg{position:absolute;top:0}@media screen and (max-width:768px){#header-svg{top:-7px}}.text{fill:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:40 185;stroke-dashoffset:0;-webkit-animation:stroke 8s infinite linear;animation:stroke 8s infinite linear;font-size:40px;line-height:1;height:40px}.text:nth-child(5n+1){stroke:#f2385a;-webkit-animation-delay:-1.6s;animation-delay:-1.6s}.text:nth-child(5n+2){stroke:#f5a503;-webkit-animation-delay:-3.2s;animation-delay:-3.2s}.text:nth-child(5n+3){stroke:#42b983;-webkit-animation-delay:-4.8s;animation-delay:-4.8s}.text:nth-child(5n+4){stroke:#56d9cd;-webkit-animation-delay:-6.4s;animation-delay:-6.4s}.text:nth-child(5n+5){stroke:#3aa1bf;-webkit-animation-delay:-8s;animation-delay:-8s}@-webkit-keyframes stroke{100%{stroke-dashoffset:-225}}@keyframes stroke{100%{stroke-dashoffset:-225}}</style></span></a><ul class="right-list"><li class="list-item"><a href="/" class="item-link">Home</a></li><li class="list-item"><a href="/tags/" class="item-link">Tags</a></li><li class="list-item"><a href="/archives/" class="item-link">Archives</a></li><li class="list-item"><a href="/project/" class="item-link">Project</a></li><li class="list-item"><a href="/about/" class="item-link">About</a></li></ul><div class="menu"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div><div class="menu-mask"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Home</a></li><li class="menu-item"><a href="/tags/" class="menu-link">Tags</a></li><li class="menu-item"><a href="/archives/" class="menu-link">Archives</a></li><li class="menu-item"><a href="/project/" class="menu-link">Project</a></li><li class="menu-item"><a href="/about/" class="menu-link">About</a></li></ul></div></div></header><div id="article-banner"><h2>Java系统学习017-排序算法(一)</h2><p class="post-date">2020-02-11</p></div><main class="app-body flex-box"><article class="post-article"><section class="markdown-content"><h2 id="排序算法理解与代码"><a href="#排序算法理解与代码" class="headerlink" title="排序算法理解与代码"></a>排序算法理解与代码</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><p><strong>原理:</strong> 相邻两个数据比较,每次找到小的放前面<br>原始数据:{1,3,4,2,6,5,7,9,8}<br>第一轮:{1,3,2,4,5,6,7,8,9}<br>第二轮:{1,2,343,5,6,7,8,9}<br>…<br>代码:<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">    public void bubbleSort(int[] a)&#123;</span><br><span class="line">        int N=a.length;</span><br><span class="line">        for (int i=0;i&lt;N;i++)&#123;</span><br><span class="line">            for(int j=0;j&lt;N-i-1;j++)&#123;</span><br><span class="line">                if(a[j+1]&lt;a[j])&#123;</span><br><span class="line">                    int temp=a[j+1];</span><br><span class="line">                    a[j+1]=a[j];</span><br><span class="line">                    a[j]=temp;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">### 插入排序</span><br><span class="line">**原理:** 每次取一个数和排好序的比较,插入到合适位置  </span><br><span class="line">原始数据:&#123;1,3,4,2,6,5,7,9,8&#125;  </span><br><span class="line">第一轮:&#123;1, 3, 4, 2, 6, 5, 7, 9, 8&#125;  </span><br><span class="line">第二轮:&#123;1, 2, 3, 4, 6, 5, 7, 9, 8&#125;  </span><br><span class="line">...  </span><br><span class="line">代码:</span><br></pre></td></tr></table></figure><p></p><pre><code>public void insertSort(int[] a){
+    int N=a.length;
+    //第一个不动
+    //第二次开始和前面的比较,遇到比自己小的就停下,插入,后面的数值后移,否则就保持放到最后
+    for(int i=1;i&lt;N;i++){
+        int temp=a[i];
+        for (int j=i-1;j&gt;=0;j--){
+            if(j==i-1&amp;&amp;temp&gt;a[j]){
+                break;
+            }else if (temp&gt;a[j]){
+                a[j+1]=temp;
+                break;
+            }
+            a[j+1]=a[j];
+        }
+    }
+}
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 快速排序</span><br><span class="line">**原理:** 取一个数为基数,比它小的放到左边,比他大的放到右边,之后再次递归处理  </span><br><span class="line">代码</span><br></pre></td></tr></table></figure><p>public int[] quickSort(int [] a){<br>//a={1,3,4,2,6,5,7,9,8};<br>//用自己的思路,分成两个数组<br>//ArrayList arrayList= new ArrayList();<br>//取第一个为基数<br>int temp=a[0];<br>int N=a.length;<br>if(N&gt;2){<br>int [] a1=new int[N];<br>int [] a2=new int[N];<br>int [] a3=new int[N];<br>int n1=0;<br>int n2=0;<br>for(int i=0;i&lt;N;i++){<br>if(a[i]&lt;=temp){<br>a1[n1]=a[i];<br>n1++;<br>}<br>if(a[i]&gt;temp){<br>a2[n2]=a[i];<br>n2++;<br>}<br>}<br>int [] z1=Arrays.copyOf(a1,n1);<br>int [] z2=Arrays.copyOf(a2,n2);<br>//合并<br>System.arraycopy(quickSort(z1),0,a3,0,n1);<br>System.arraycopy(quickSort(z2),0,a3,n1,n2);<br>return a3;<br>}else if (N==2){<br>if(a[0]&gt;a[1]){<br>int temp1 =a[0];<br>a[0]=a[1];<br>a[1]=temp1;<br>}<br>return a;<br>}else if(N==1){<br>return a;<br>}<br>return a;<br>}<br></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 希尔排序</span><br><span class="line">**原理:** 插入排序对于大部分顺序规则的数据效率很高,希尔排序,先将数据预先处理好,最后插入排序  </span><br><span class="line">代码</span><br></pre></td></tr></table></figure><p></p><p>//希尔排序<br>public void shellSort(int [] a){<br>int N=a.length;<br>int dk=N/2;<br>while(dk&gt;=1){<br>insertSort(a,dk);<br>dk=dk/2;<br>}<br>}<br>//插入排序/希尔<br>public void insertSort(int[] a,int dk){<br>int N=a.length;<br>//第一个不动<br>//第二次开始和前面的比较,遇到比自己小的就停下,插入,后面的数值后移,否则就保持放到最后<br>for(int i=0;i&lt;N;i=i+dk){<br>int temp=a[i];<br>for (int j=i-dk;j&gt;=0;j=j-dk){<br>if(j==i-dk&amp;&amp;temp&gt;a[j]){<br>break;<br>}else if (temp&gt;a[j]){<br>a[j+dk]=temp;<br>break;<br>}<br>a[j+dk]=a[j];<br>}<br>}<br>}</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 归并排序</span><br><span class="line">**原理:**每次分成左右两个数组,先把左右两个数组排好序,再合并,递归调用  </span><br><span class="line">代码</span><br></pre></td></tr></table></figure><pre><code>public int [] mergeSort(int [] a){
+    //每次分成左右两个数组,先把左右两个数组排好序,再合并
+    int N=a.length;
+    int mid=N/2;
+    if (N &gt;2) {
+    int right=mid+1;
+    int [] a1=Arrays.copyOf(a,mid);
+    int [] a2=new int [N-mid];
+    System.arraycopy(a,mid,a2,0,N-mid);
+    return merge(mergeSort(a1), mergeSort(a2));
+    }else if(N==2) {
+        if(a[0]&gt;a[1]){
+            int temp=a[0];
+            a[0]=a[1];
+            a[1]=temp;
+        }
+    }else if (N==1){
+
+    }
+return a;
+}
+public int [] merge(int []a1,int[] a2){
+    //两个数组是已经排好序的
+    int n1=a1.length;
+    int n2=a2.length;
+    int [] a=new int[n1+n2];
+    int i=0,j=0,k=0;
+    while (i&lt;n1&amp;&amp;j&lt;n2){
+        if(a1[i]&lt;a2[j]){
+            a[k++]=a1[i++];
+        }else {
+            a[k++]=a2[j++];
+        }
+    }
+    while (i&lt;n1){
+        a[k++]=a1[i++];
+    }
+    while (j&lt;n2){
+        a[k++]=a2[j++];
+    }
+    return a;
+}
+</code></pre><p><code>`</code></p></section><div class="tags"><span>Tags:</span> <a href="/tags#java,算法"><span class="tag-code">java,算法</span></a></div><div class="nav-container"><a class="nav-left" href="/2019/07/21/hadoopCE-P012/"><span class="nav-arrow">← </span>大数据集群搭建012-hbase/hive开发环境</a></div><div id="disqus_thread"></div></article><aside class="catalog-container"><div class="toc-main"><strong class="toc-title">Catalog</strong><ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#排序算法理解与代码"><span class="toc-nav-text">排序算法理解与代码</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#冒泡排序"><span class="toc-nav-text">冒泡排序</span></a></li></ol></li></ol></div></aside></main><script>(function () {
+    var url = 'https://whyisee.github.io/2020/02/11/java-J003/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function () {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function () {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="' + src + '" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function () {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "Java系统学习017-排序算法(一)",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();</script><script>var disqus_shortname="zoukh",disqus_url="https://whyisee.github.io/2020/02/11/java-J003/";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//go.disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><div class="scroll-top"><span class="arrow-icon"></span></div></div><footer class="app-footer"><p class="copyright">&copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a><br>Theme by <a href="https://github.com/yanm1ng">yanm1ng</a></p></footer><script>function async(e,n){var t=document,a="script",r=t.createElement(a),c=t.getElementsByTagName(a)[0];r.src=e,n&&r.addEventListener("load",function(e){n(null,e)},!1),c.parentNode.insertBefore(r,c)}</script><script>async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js",function(){FastClick.attach(document.body)})</script><script>var hasLine="true";async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js",function(){$("figure pre").each(function(t,e){var a=$(this).parents("figure");"false"===hasLine&&a.find(".gutter").hide();var s=a.attr("class").split(" ")[1]||"code",i=$(this).html(),h=document.createElement("code");h.className=s,h.innerHTML=i,$(this).attr("class","").empty().html(h),a.attr("data-lang",s.toUpperCase()),hljs.highlightBlock(e)})})</script><script>var _baId="38d9d6cd6dd01ce7d270b91920f6a51b",_hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?"+_baId;var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><script src="/js/script.js"></script></body></html>
