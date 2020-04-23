@@ -1,0 +1,91 @@
+<!DOCTYPE html><html lang="zh"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport"><meta name="description" content="Zoukh&#39;s blog"><meta name="keyword" content="blog,front end,css,html,javascript"><link rel="shortcut icon" href="/css/images/logo.png"><title>BI学习-数据仓库建模理论 | Zoukh&#39;s Blog</title><link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet"><link href="//cdn.bootcss.com/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.css"><script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><script src="//cdn.bootcss.com/geopattern/1.2.3/js/geopattern.min.js"></script><script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script><script type="text/x-mathjax-config">MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });</script><script type="text/x-mathjax-config">MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });</script><script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script></head><div class="wechat-share"><img src="/css/images/logo.png" alt="logo"></div><body><div id="container"><header class="header fixed-header"><div class="header-container"><a class="home-link" href="/"><div class="logo"></div><span><svg height="60" width="250" id="header-svg"><symbol id="s-text"><text text-anchor="left" x="0%" y="50%" dy=".35em">Zoukh's Blog</text></symbol><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use><use class="text" xlink:href="#s-text"></use></svg><style>#header-svg{position:absolute;top:0}@media screen and (max-width:768px){#header-svg{top:-7px}}.text{fill:none;stroke-width:2;stroke-linejoin:round;stroke-dasharray:40 185;stroke-dashoffset:0;-webkit-animation:stroke 8s infinite linear;animation:stroke 8s infinite linear;font-size:40px;line-height:1;height:40px}.text:nth-child(5n+1){stroke:#f2385a;-webkit-animation-delay:-1.6s;animation-delay:-1.6s}.text:nth-child(5n+2){stroke:#f5a503;-webkit-animation-delay:-3.2s;animation-delay:-3.2s}.text:nth-child(5n+3){stroke:#42b983;-webkit-animation-delay:-4.8s;animation-delay:-4.8s}.text:nth-child(5n+4){stroke:#56d9cd;-webkit-animation-delay:-6.4s;animation-delay:-6.4s}.text:nth-child(5n+5){stroke:#3aa1bf;-webkit-animation-delay:-8s;animation-delay:-8s}@-webkit-keyframes stroke{100%{stroke-dashoffset:-225}}@keyframes stroke{100%{stroke-dashoffset:-225}}</style></span></a><ul class="right-list"><li class="list-item"><a href="/" class="item-link">Home</a></li><li class="list-item"><a href="/tags/" class="item-link">Tags</a></li><li class="list-item"><a href="/archives/" class="item-link">Archives</a></li><li class="list-item"><a href="/project/" class="item-link">Project</a></li><li class="list-item"><a href="/about/" class="item-link">About</a></li></ul><div class="menu"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></div><div class="menu-mask"><ul class="menu-list"><li class="menu-item"><a href="/" class="menu-link">Home</a></li><li class="menu-item"><a href="/tags/" class="menu-link">Tags</a></li><li class="menu-item"><a href="/archives/" class="menu-link">Archives</a></li><li class="menu-item"><a href="/project/" class="menu-link">Project</a></li><li class="menu-item"><a href="/about/" class="menu-link">About</a></li></ul></div></div></header><div id="article-banner"><h2>BI学习-数据仓库建模理论</h2><p class="post-date">2020-04-22</p></div><main class="app-body flex-box"><article class="post-article"><section class="markdown-content"><h1 id="四种建模方法"><a href="#四种建模方法" class="headerlink" title="四种建模方法"></a>四种建模方法</h1><h2 id="1-ER实体模型"><a href="#1-ER实体模型" class="headerlink" title="1. ER实体模型"></a>1. ER实体模型</h2><p>将事务抽象成”实体”(Entity),”属性”(Property),”关系”(Relationship)来表示数据关联和事物的描述,这种对数据的抽象建模通常被称为ER实体关系模型.</p><p>实体:通常为参与到过程中的主体,客观存在的,比如商品,仓库,货车.</p><p>属性:对主体的描述,修饰即为属性,比如商品的属性有名称,颜色,价格.</p><p>关系:实体与实体之间的对应关系.<br>1:1<br>1:n<br>n:m<br>日常建模中,实体用矩形表示,关系用菱形,属性用椭圆</p><h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><ol><li>ER模型是数据库设计的理论基础,当前几乎所有的OLTP系统都参与ER模型建模的方法</li><li>Bill Inom 提出的数仓理论,推荐采用ER关系模型进行建模</li><li>BI架构提出分层架构,数仓底层ods,dwd层多采用ER模型建模</li></ol><h2 id="2-维度建模"><a href="#2-维度建模" class="headerlink" title="2. 维度建模"></a>2. 维度建模</h2><p>维度建模来源数据集市,主要面向分析场景OLAP,数据集市的集合为数据仓库<br>维度建模将数据仓库中的表分为事实表和维度表</p><h3 id="事实表"><a href="#事实表" class="headerlink" title="事实表"></a>事实表</h3><p>在ER模型中抽象出有了实体,关系,属性三种类别,在现实事件中,对每一个操作型事件,基本都是发生在实体之间的,伴随着这种操作时事件的发生,<br>会产生可度量的值,而这个过程就产生了一个事实表,存储了每一个可以度量的事件.</p><h3 id="维度表"><a href="#维度表" class="headerlink" title="维度表"></a>维度表</h3><p>维度,看待事物的角度.比如颜色,尺寸,价格.<br>维度表一般为单一主键,在ER模型中,实体为客观存在的事物,会带有一些描述性的属性,属性一般为文本性的,描述性的这些描述为维度.<br>日常的主要维度抽象包括:时间维度,地理区域维度等</p><p>维度建模通常又被分为星型模型和雪花模型<br>星型模型:</p><p>雪花模型:</p><p>星型模型和雪花模型的主要区别在于对维度表的拆分，对于雪花模型，维度表的设计更加规范，一般符合3NF；而星型模型，一般采用降维的操作，利用冗余来避免模型过于复杂，提高易用性和分析效率。</p><p>雪花、星型模型对比：</p><p>1、冗余：雪花模型符合业务逻辑设计，采用3NF设计，有效降低数据冗余；星型模型的维度表设计不符合3NF，反规范化，维度表之间不会直接相关，牺牲部分存储空间。</p><p>2、性能：雪花模型由于存在维度间的关联，采用3NF降低冗余，通常在使用过程中，需要连接更多的维度表，导致性能偏低；星型模型反三范式，采用降维的操作将维度整合，以存储空间为代价有效降低维度表连接数，性能较雪花模型高。</p><p>3、ETL：雪花模型符合业务ER模型设计原则，在ETL过程中相对简单，但是由于附属模型的限制，ETL任务并行化较低；星型模型在设计维度表时反范式设计，所以在ETL过程中整合业务数据到维度表有一定难度，但由于避免附属维度，可并行化处理。</p><p>大数据和传统关系型数据库的计算框架不一样，例如对比mapreduce和oracle，在mapreduce里面，每多一个表的关联，就多一个job。mapreduce的每个任务进来，要申请资源，分配容器，各节点通信等。有可能YARN调度时长大于任务运行时间，例如调度需要5秒才能申请到资源，而表之间的join只需要2秒。hive优化里面，要尽可能减少job任务数，也就是减少表之间的关联，可以用适当的冗余来避免低效的查询方式，这是和oracle等其他关系型数据库不同的地方。<br>（点此了解：MapReduce作业运行机制）</p><p>3、Data Vault模型</p><p>Data Vault是在ER模型的基础上衍生而来，模型设计的初衷是有效的组织基础数据层，使之易扩展，灵活应对业务变化，同时强调历史性、可追溯性和原子性，不要求对数据进行过度的一致性处理，并非针对分析场景所设计。</p><p>Data Vault模型是一种中心辐射式模型，其设计重点围绕着业务键的集成模式。这些业务键是存储在多个系统中的、针对各种信息的键，用于定位和唯一标识记录或数据。</p><p>Data Vault模型包含三种基本结构：</p><p>1）中心表-Hub：唯一业务键的列表，唯一标识企业实际业务，企业的业务主体集合。</p><p>2）链接表-Link：表示中心表之间的关系，通过链接表串联整个企业的业务关联关系。</p><p>3）卫星表-Satellite：历史的描述性数据，数据仓库中数据的真正载体。</p><p>Data Vault是对ER模型更进一步的规范化，由于对数据的拆解更偏向于基础数据组织，在处理分析类场景时相对复杂，适合数仓底层构建，目前实际应用场景较少。</p><p>4、Anchor</p><p>Anchor是对Data Vault模型做了更进一步的规范化处理，初衷是为了设计高度可扩展的模型，核心思想是所有的扩张只添加而不修改，于是设计出的模型基本变成了K-V结构的模型，模型范式达到了6NF。</p><p>由于过度规范化，使用中牵涉到太多的join操作，目前没有实际案例，仅作了解。</p><p>1）ER模型</p><p>ER模型常用于OLTP数据库建模，应用到构建数仓时更偏重数据整合，站在企业整体考虑，将各个系统的数据按相似性一致性进行合并处理，为数据分析、决策服务，但并不便于直接用来支持分析。</p><p>问题：<br>a）需要全面梳理企业所有的业务和数据流；<br>b）实施周期长；<br>c）对建模人员要求高。</p><p>2）维度模型</p><p>维度建模是面向分析场景而生，针对分析场景构建数仓模型，重点关注快速、灵活的解决分析需求，同时能够提供大规模数据的快速响应性能。针对性强，主要应用于数据仓库构建和OLAP引擎底层数据模型。</p><p>模型选择和设计的原则：</p><p>a）数仓模型的选择是灵活的，不局限于某一种模型方法；<br>b）数仓模型的设计也是灵活的，以实际需求场景为导向；<br>c）模型设计要兼顾灵活性，可扩展，而对终端用户透明性；<br>d）模型设计要考虑技术可靠性和实现成本。</p></section><div class="tags"><span>Tags:</span> <a href="/tags#BI"><span class="tag-code">BI</span></a></div><div class="nav-container"><a class="nav-left" href="/2020/04/22/BI002/"><span class="nav-arrow">← </span>BI学习-数据仓库架构分层</a></div><div id="disqus_thread"></div></article><aside class="catalog-container"><div class="toc-main"><strong class="toc-title">Catalog</strong><ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#四种建模方法"><span class="toc-nav-text">四种建模方法</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#1-ER实体模型"><span class="toc-nav-text">1. ER实体模型</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#应用场景"><span class="toc-nav-text">应用场景</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#2-维度建模"><span class="toc-nav-text">2. 维度建模</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#事实表"><span class="toc-nav-text">事实表</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#维度表"><span class="toc-nav-text">维度表</span></a></li></ol></li></ol></li></ol></div></aside></main><script>(function () {
+    var url = 'https://whyisee.github.io/2020/04/22/BI001/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
+    } else {
+      $('#article-banner').geopattern(url)
+    }
+    $('.header').removeClass('fixed-header')
+
+    // error image
+    $(".markdown-content img").on('error', function () {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
+    })
+
+    // zoom image
+    $(".markdown-content img").on('click', function () {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
+
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
+
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="' + src + '" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
+
+        $('.image-view-wrap').on('click', function () {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
+      }
+    })
+
+    // qrcode
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+
+    // gitment
+    var gitmentConfig = "";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "BI学习-数据仓库建模理论",
+        owner: "",
+        repo: "",
+        oauth: {
+          client_id: "",
+          client_secret: ""
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  })();</script><script>var disqus_shortname="zoukh",disqus_url="https://whyisee.github.io/2020/04/22/BI001/";!function(){var e=document.createElement("script");e.type="text/javascript",e.async=!0,e.src="//go.disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)}()</script><div class="scroll-top"><span class="arrow-icon"></span></div></div><footer class="app-footer"><p class="copyright">&copy; 2020 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a><br>Theme by <a href="https://github.com/yanm1ng">yanm1ng</a></p></footer><script>function async(e,n){var t=document,a="script",r=t.createElement(a),c=t.getElementsByTagName(a)[0];r.src=e,n&&r.addEventListener("load",function(e){n(null,e)},!1),c.parentNode.insertBefore(r,c)}</script><script>async("//cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js",function(){FastClick.attach(document.body)})</script><script>var hasLine="true";async("//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js",function(){$("figure pre").each(function(t,e){var a=$(this).parents("figure");"false"===hasLine&&a.find(".gutter").hide();var s=a.attr("class").split(" ")[1]||"code",i=$(this).html(),h=document.createElement("code");h.className=s,h.innerHTML=i,$(this).attr("class","").empty().html(h),a.attr("data-lang",s.toUpperCase()),hljs.highlightBlock(e)})})</script><script>var _baId="38d9d6cd6dd01ce7d270b91920f6a51b",_hmt=_hmt||[];!function(){var e=document.createElement("script");e.src="//hm.baidu.com/hm.js?"+_baId;var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)}()</script><script src="/js/script.js"></script></body></html>
